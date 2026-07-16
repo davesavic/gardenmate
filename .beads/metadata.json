@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "gardenmate",
+  "project_id": "5c272fdf-7b9c-4a5b-b527-9b1dc2d1e369"
+}
