@@ -1,5 +1,33 @@
+# Build output
+/gardenmate
+/bin/
+*.exe
+frontend/dist/
+
+# Generated Wails bindings (wails3 generate bindings -clean)
+frontend/bindings/
+
+# Task runner cache
+.task/
+
+# Dependencies
+node_modules/
+
+# Test artifacts
+coverage.out
+test-results/
+playwright-report/
 
 # Beads / Dolt files (added by bd init)
 .dolt/
 *.db
+*.db-wal
+*.db-shm
 .beads-credential-key
+.beads/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

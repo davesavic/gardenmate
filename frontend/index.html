@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GardenMate</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div class="toolbar">
+    <button id="btn-add-plant" title="Add plant" aria-label="Add plant">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 20v-8"/>
+        <path d="M12 12C12 8.7 9.3 6 6 6c0 3.3 2.7 6 6 6z"/>
+        <path d="M12 12c0-3.3 2.7-6 6-6 0 3.3-2.7 6-6 6z"/>
+        <path d="M8 20h8"/>
+      </svg>
+    </button>
+    <button id="btn-settings" title="Settings" aria-label="Settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+    <button id="btn-achievements" title="Achievements" aria-label="Achievements">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M8 21h8"/>
+        <path d="M12 17v4"/>
+        <path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/>
+        <path d="M7 6H4a2 2 0 0 0 2 5h1"/>
+        <path d="M17 6h3a2 2 0 0 1-2 5h-1"/>
+      </svg>
+    </button>
+    <button id="btn-widget" title="Toggle widget" aria-label="Toggle widget">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="4" width="18" height="14" rx="2"/>
+        <rect x="12" y="10" width="7" height="6" rx="1"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="canvas-container">
+    <canvas id="garden-canvas"></canvas>
+
+    <div class="detail-panel" id="detail-panel">
+      <div class="stage-eyebrow" id="plant-stage"></div>
+      <h2><input type="text" id="plant-name-input" maxlength="100" placeholder="Plant name"></h2>
+      <div class="species-label" id="species-name"></div>
+      <hr class="tag-divider">
+      <div class="stat-group">
+        <div class="stat-row stat-water">
+          <span class="stat-label" title="Water">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.7s6.5 7.1 6.5 12A6.5 6.5 0 0 1 5.5 14.7c0-4.9 6.5-12 6.5-12z"/></svg>
+          </span>
+          <div class="stat-bar"><div class="stat-bar-fill" id="stat-water"></div></div>
+          <span class="stat-value" id="stat-water-value">100%</span>
+        </div>
+        <div class="stat-row stat-sun">
+          <span class="stat-label" title="Sunlight">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5 5l1.7 1.7M17.3 17.3 19 19M19 5l-1.7 1.7M6.7 17.3 5 19"/></svg>
+          </span>
+          <div class="stat-bar"><div class="stat-bar-fill" id="stat-sun"></div></div>
+          <span class="stat-value" id="stat-sun-value">100%</span>
+        </div>
+        <div class="stat-row stat-nutrients">
+          <span class="stat-label" title="Nutrients">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4c-8 0-13 4-13 10 0 .8.1 1.6.3 2.3C9.6 12 13 9.5 16 8.5c-3.3 2-6.4 4.8-8 8.6.9.6 2 .9 3.2.9 6 0 8.8-5.4 8.8-14z"/><path d="M6.9 16.6C5.5 18 4.6 19.6 4 21h2.1c.4-1.1 1-2.3 1.9-3.4-.4-.3-.8-.6-1.1-1z"/></svg>
+          </span>
+          <div class="stat-bar"><div class="stat-bar-fill" id="stat-nutrients"></div></div>
+          <span class="stat-value" id="stat-nutrients-value">100%</span>
+        </div>
+        <div class="stat-row stat-micro">
+          <span class="stat-label" title="Micronutrients">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M18.5 15l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9.9-2.6z"/></svg>
+          </span>
+          <div class="stat-bar"><div class="stat-bar-fill" id="stat-micro"></div></div>
+          <span class="stat-value" id="stat-micro-value">100%</span>
+        </div>
+        <div class="stat-row stat-health">
+          <span class="stat-label" title="Health">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 20.5S4 15.3 4 9.6C4 6.5 6.4 4.5 8.8 4.5c1.5 0 2.7.9 3.2 1.7.5-.8 1.7-1.7 3.2-1.7 2.4 0 4.8 2 4.8 5.1 0 5.7-8 10.9-8 10.9z"/></svg>
+          </span>
+          <div class="stat-bar"><div class="stat-bar-fill" id="stat-health"></div></div>
+          <span class="stat-value" id="stat-health-value">100%</span>
+        </div>
+      </div>
+      <div class="care-actions" id="care-actions">
+        <button class="btn-water" id="btn-water">Water</button>
+        <button class="btn-fertilize" id="btn-fertilize">Fertilize</button>
+      </div>
+      <div id="pests-container"></div>
+      <div class="death-warning" id="death-warning" style="display:none"></div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span class="plant-count" id="plant-count">0 alive / 0 dead</span>
+    <span class="next-attention" id="next-attention">All plants healthy!</span>
+    <span class="garden-clock" id="garden-clock"></span>
+  </div>
+
+  <div class="catalog-overlay" id="catalog-overlay">
+    <div class="catalog-modal">
+      <h2>Species Catalog</h2>
+      <div class="catalog-grid" id="catalog-grid"></div>
+      <button class="catalog-close" id="catalog-close">&times;</button>
+    </div>
+  </div>
+
+  <div class="achievements-panel" id="achievements-panel">
+    <h2>Achievements</h2>
+    <div id="achievements-list"></div>
+  </div>
+
+  <div class="settings-overlay" id="settings-overlay">
+    <div class="settings-modal">
+      <h2>Settings</h2>
+      <div class="settings-field">
+        <label>Minutes per Game Hour (1-60)</label>
+        <input type="number" id="setting-time-speed" min="1" max="60" value="5">
+      </div>
+      <div class="settings-field">
+        <label>Catch-up Max Game Hours (1-24)</label>
+        <input type="number" id="setting-catchup-max" min="1" max="24" value="8">
+      </div>
+      <button class="btn-primary" id="settings-save">Save changes</button>
+      <button class="btn-ghost" id="settings-close" style="margin-left:8px">Cancel</button>
+      <button class="btn-danger" id="reset-garden-btn">Reset garden</button>
+    </div>
+  </div>
+
+  <div class="confirm-overlay" id="confirm-overlay">
+    <div class="confirm-dialog">
+      <p>This will remove all plants and reset achievements. Are you sure?</p>
+      <div class="confirm-actions">
+        <button class="btn-ghost" id="confirm-cancel">Cancel</button>
+        <button class="btn-danger" id="confirm-ok">Yes, reset everything</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="achievement-toast" id="achievement-toast">
+    <span id="achievement-toast-text"></span>
+  </div>
+
+  <div class="error-toast" id="error-toast">
+    <span id="error-toast-text"></span>
+  </div>
+
+  <div class="catchup-alert" id="catchup-alert">
+    <h3>Garden Updated</h3>
+    <p class="catchup-content"></p>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

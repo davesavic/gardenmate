@@ -1,0 +1,15 @@
+version: '3'
+
+tasks:
+  build:
+    desc: Build Windows binary
+    cmds:
+      - GOOS=windows GOARCH=amd64 go build -o bin/gardenmate-windows-amd64.exe ./...
+    vars:
+      CGO_ENABLED: '1'
+
+  package:
+    desc: Package Windows installer
+    deps: [build]
+    cmds:
+      - echo "Windows installer packaging placeholder"

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GardenMate Widget</title>
+  <style>
+    @font-face {
+      font-family: 'Fraunces';
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url('/fonts/fraunces-semibold.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Nunito Sans';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('/fonts/nunito-sans.woff2') format('woff2');
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; }
+    body {
+      background: transparent;
+      font-family: 'Nunito Sans', 'Segoe UI', system-ui, sans-serif;
+      color: #efe9da;
+    }
+    body.opaque { background: #16241a; }
+    #widget-canvas { display: block; width: 100%; height: 100%; }
+    .drag-handle { position: absolute; top: 0; left: 0; right: 0; height: 20px; z-index: 10; }
+    .hint-text {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      color: #e9a857; font-size: 13px; font-weight: 600; text-align: center;
+      pointer-events: none; line-height: 1.6;
+      text-shadow: 0 1px 4px rgba(4, 10, 6, 0.9); opacity: 1; transition: opacity 1s ease;
+    }
+    .hint-text.hidden { opacity: 0; }
+    .tooltip {
+      position: absolute; background: rgba(20, 33, 24, 0.96);
+      border: 1px solid rgba(154, 176, 152, 0.25);
+      border-radius: 10px; padding: 12px; min-width: 168px; z-index: 20;
+      display: none; pointer-events: auto;
+      box-shadow: 0 8px 32px rgba(4, 10, 6, 0.55);
+    }
+    .tooltip.show { display: block; }
+    .tooltip .tooltip-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #efe9da;
+    }
+    .tooltip .tooltip-health-bar {
+      height: 5px; background: rgba(10, 18, 12, 0.8);
+      border-radius: 3px; margin-bottom: 10px; overflow: hidden;
+    }
+    .tooltip .tooltip-health-fill {
+      height: 100%; background: linear-gradient(90deg, #bd5f4c, #da7a66); border-radius: 3px;
+    }
+    .tooltip button {
+      display: block; width: 100%; padding: 6px 8px; margin-top: 5px;
+      border: 1px solid transparent; border-radius: 6px; font-size: 12px;
+      font-weight: 700; cursor: pointer; font-family: inherit;
+      transition: filter 150ms ease;
+    }
+    .tooltip button:hover { filter: brightness(1.2); }
+    .tooltip .btn-water {
+      background: #29506a; border-color: rgba(111, 177, 216, 0.35); color: #cfe6f4;
+    }
+    .tooltip .btn-fertilize {
+      background: #35522b; border-color: rgba(143, 199, 118, 0.35); color: #ddeed2;
+    }
+    .context-menu {
+      position: absolute; background: rgba(20, 33, 24, 0.96);
+      border: 1px solid rgba(154, 176, 152, 0.25);
+      border-radius: 10px; min-width: 172px; z-index: 30;
+      display: none; pointer-events: auto; padding: 5px;
+      box-shadow: 0 8px 32px rgba(4, 10, 6, 0.55);
+    }
+    .context-menu.show { display: block; }
+    .context-menu button {
+      display: block; width: 100%; padding: 7px 12px; border: none;
+      background: none; color: #efe9da; font-size: 13px; text-align: left;
+      cursor: pointer; font-family: inherit; border-radius: 6px;
+    }
+    .context-menu button:hover { background: rgba(233, 168, 87, 0.14); }
+    .context-menu button:disabled { opacity: 0.4; cursor: default; }
+    .context-menu button:disabled:hover { background: none; }
+    .context-menu select {
+      width: 100%; padding: 7px 8px; background: rgba(10, 18, 12, 0.6); color: #efe9da;
+      border: 1px solid #2b4232; border-radius: 6px; font-size: 12px;
+      font-family: inherit; margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="drag-handle"></div>
+  <canvas id="widget-canvas"></canvas>
+  <div class="hint-text" id="hint-text">Press Ctrl+T to toggle<br>Right-click to add a plant</div>
+  <div class="tooltip" id="tooltip"></div>
+  <div class="context-menu" id="context-menu"></div>
+
+  <script type="module" src="/src/widget-main.js"></script>
+</body>
+</html>

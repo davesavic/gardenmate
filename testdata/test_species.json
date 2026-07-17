@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "species": [
+    {
+      "id": "test_plant",
+      "name": "Test Plant",
+      "category": "beginner",
+      "unlock_achievement_id": null,
+      "water_rate": 0.02,
+      "sun_rate": 0.01,
+      "nutrient_rate": 0.01,
+      "micro_rate": 0.005,
+      "growth_hours": [5, 10, 15, 20, 25],
+      "visual_params": {
+        "stem_color": "#4a6a2a",
+        "leaf_shape": "oval",
+        "leaf_color": "#2d5a1e",
+        "flower_color": "#ffffff",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["aphids"]
+    },
+    {
+      "id": "test_plant_fast",
+      "name": "Fast Plant",
+      "category": "intermediate",
+      "unlock_achievement_id": "test_ach",
+      "water_rate": 0.05,
+      "sun_rate": 0.03,
+      "nutrient_rate": 0.03,
+      "micro_rate": 0.02,
+      "growth_hours": [2, 4, 6, 8, 10],
+      "visual_params": {
+        "stem_color": "#5a5a2a",
+        "leaf_shape": "pointed",
+        "leaf_color": "#3d6a1e",
+        "flower_color": null,
+        "flower_shape": null
+      },
+      "pest_vulnerabilities": ["aphids", "spider_mites"]
+    }
+  ],
+  "pest_types": [
+    {
+      "id": "aphids",
+      "name": "Aphids",
+      "base_spawn_rate": 0.015,
+      "severity_growth_rate": 0.008
+    },
+    {
+      "id": "spider_mites",
+      "name": "Spider Mites",
+      "base_spawn_rate": 0.008,
+      "severity_growth_rate": 0.012
+    }
+  ],
+  "achievements": [
+    {
+      "id": "test_ach",
+      "name": "Test Achievement",
+      "description": "Grow a fast plant to maturity",
+      "type": "grow_to_stage",
+      "params": { "stage": 3 }
+    },
+    {
+      "id": "test_flower_ach",
+      "name": "Test Flower Achievement",
+      "description": "Grow any plant to flowering",
+      "type": "grow_to_stage",
+      "params": { "stage": 4 }
+    },
+    {
+      "id": "test_hours_ach",
+      "name": "Test Hours Achievement",
+      "description": "Keep test_plant alive for 10 game hours",
+      "type": "keep_alive_game_hours",
+      "params": { "species_id": "test_plant", "hours": 10 }
+    },
+    {
+      "id": "test_days_ach",
+      "name": "Test Days Achievement",
+      "description": "Keep starters alive for 1 day",
+      "type": "keep_alive_days",
+      "params": { "days": 1 }
+    }
+  ]
+}

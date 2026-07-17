@@ -1,0 +1,15 @@
+version: '3'
+
+tasks:
+  build:
+    desc: Build macOS binary
+    cmds:
+      - GOOS=darwin GOARCH=amd64 go build -o bin/gardenmate-darwin-amd64 ./...
+    vars:
+      CGO_ENABLED: '1'
+
+  package:
+    desc: Package macOS .app bundle
+    deps: [build]
+    cmds:
+      - echo "macOS .app packaging placeholder"

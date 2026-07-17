@@ -1,0 +1,594 @@
+{
+  "version": 1,
+  "species": [
+    {
+      "id": "snake_plant",
+      "name": "Snake Plant",
+      "category": "beginner",
+      "unlock_achievement_id": null,
+      "water_rate": 0.02,
+      "sun_rate": 0.01,
+      "nutrient_rate": 0.01,
+      "micro_rate": 0.005,
+      "growth_hours": [12, 24, 48, 72, 96],
+      "visual_params": {
+        "stem_color": "#5a4a2a",
+        "leaf_shape": "pointed",
+        "leaf_color": "#2d5a1e",
+        "flower_color": null,
+        "flower_shape": null
+      },
+      "pest_vulnerabilities": ["aphids", "fungus_gnats"]
+    },
+    {
+      "id": "spider_plant",
+      "name": "Spider Plant",
+      "category": "beginner",
+      "unlock_achievement_id": null,
+      "water_rate": 0.03,
+      "sun_rate": 0.02,
+      "nutrient_rate": 0.015,
+      "micro_rate": 0.01,
+      "growth_hours": [10, 20, 40, 60, 80],
+      "visual_params": {
+        "stem_color": "#8fbc8f",
+        "leaf_shape": "elongated",
+        "leaf_color": "#2e8b2e",
+        "flower_color": "#ffffff",
+        "flower_shape": "star"
+      },
+      "pest_vulnerabilities": ["aphids", "spider_mites"]
+    },
+    {
+      "id": "pothos",
+      "name": "Golden Pothos",
+      "category": "beginner",
+      "unlock_achievement_id": null,
+      "water_rate": 0.025,
+      "sun_rate": 0.015,
+      "nutrient_rate": 0.01,
+      "micro_rate": 0.005,
+      "growth_hours": [8, 18, 36, 54, 72],
+      "visual_params": {
+        "stem_color": "#6b8e23",
+        "leaf_shape": "heart",
+        "leaf_color": "#4caf50",
+        "flower_color": null,
+        "flower_shape": null
+      },
+      "pest_vulnerabilities": ["fungus_gnats", "spider_mites"]
+    },
+    {
+      "id": "peace_lily",
+      "name": "Peace Lily",
+      "category": "intermediate",
+      "unlock_achievement_id": "grow_first_mature",
+      "water_rate": 0.05,
+      "sun_rate": 0.03,
+      "nutrient_rate": 0.03,
+      "micro_rate": 0.02,
+      "growth_hours": [16, 32, 56, 80, 110],
+      "visual_params": {
+        "stem_color": "#2f4f2f",
+        "leaf_shape": "oval",
+        "leaf_color": "#006400",
+        "flower_color": "#ffffff",
+        "flower_shape": "pointed"
+      },
+      "pest_vulnerabilities": ["aphids", "fungus_gnats", "spider_mites"]
+    },
+    {
+      "id": "monstera",
+      "name": "Monstera",
+      "category": "intermediate",
+      "unlock_achievement_id": "grow_first_mature",
+      "water_rate": 0.045,
+      "sun_rate": 0.04,
+      "nutrient_rate": 0.035,
+      "micro_rate": 0.025,
+      "growth_hours": [20, 40, 64, 92, 124],
+      "visual_params": {
+        "stem_color": "#3e5a1a",
+        "leaf_shape": "split",
+        "leaf_color": "#228b22",
+        "flower_color": "#ffffe0",
+        "flower_shape": "pointed"
+      },
+      "pest_vulnerabilities": ["spider_mites", "fungus_gnats"]
+    },
+    {
+      "id": "zz_plant",
+      "name": "ZZ Plant",
+      "category": "intermediate",
+      "unlock_achievement_id": "grow_first_mature",
+      "water_rate": 0.02,
+      "sun_rate": 0.015,
+      "nutrient_rate": 0.02,
+      "micro_rate": 0.01,
+      "growth_hours": [24, 48, 72, 96, 120],
+      "visual_params": {
+        "stem_color": "#2e4a1e",
+        "leaf_shape": "oval",
+        "leaf_color": "#1b5e20",
+        "flower_color": null,
+        "flower_shape": null
+      },
+      "pest_vulnerabilities": ["aphids"]
+    },
+    {
+      "id": "rubber_plant",
+      "name": "Rubber Plant",
+      "category": "intermediate",
+      "unlock_achievement_id": "grow_first_mature",
+      "water_rate": 0.04,
+      "sun_rate": 0.035,
+      "nutrient_rate": 0.03,
+      "micro_rate": 0.02,
+      "growth_hours": [18, 36, 60, 88, 118],
+      "visual_params": {
+        "stem_color": "#4a2c2a",
+        "leaf_shape": "oval",
+        "leaf_color": "#3e1f1f",
+        "flower_color": null,
+        "flower_shape": null
+      },
+      "pest_vulnerabilities": ["spider_mites", "aphids"]
+    },
+    {
+      "id": "bonsai",
+      "name": "Bonsai Tree",
+      "category": "advanced",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.06,
+      "sun_rate": 0.05,
+      "nutrient_rate": 0.05,
+      "micro_rate": 0.04,
+      "growth_hours": [48, 96, 168, 240, 336],
+      "visual_params": {
+        "stem_color": "#5c4033",
+        "leaf_shape": "round",
+        "leaf_color": "#2e7d32",
+        "flower_color": null,
+        "flower_shape": null
+      },
+      "pest_vulnerabilities": ["aphids", "spider_mites", "fungus_gnats"]
+    },
+    {
+      "id": "venus_flytrap",
+      "name": "Venus Flytrap",
+      "category": "advanced",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.07,
+      "sun_rate": 0.06,
+      "nutrient_rate": 0.04,
+      "micro_rate": 0.05,
+      "growth_hours": [24, 48, 80, 120, 160],
+      "visual_params": {
+        "stem_color": "#5a7a3a",
+        "leaf_shape": "trap",
+        "leaf_color": "#4caf50",
+        "flower_color": "#ffffff",
+        "flower_shape": "star"
+      },
+      "pest_vulnerabilities": ["aphids", "fungus_gnats"]
+    },
+    {
+      "id": "orchid",
+      "name": "Orchid",
+      "category": "advanced",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.065,
+      "sun_rate": 0.045,
+      "nutrient_rate": 0.055,
+      "micro_rate": 0.05,
+      "growth_hours": [32, 64, 104, 152, 208],
+      "visual_params": {
+        "stem_color": "#4a6741",
+        "leaf_shape": "oval",
+        "leaf_color": "#2d5a27",
+        "flower_color": "#c77dff",
+        "flower_shape": "fan"
+      },
+      "pest_vulnerabilities": ["spider_mites", "fungus_gnats"]
+    },
+    {
+      "id": "bird_of_paradise",
+      "name": "Bird of Paradise",
+      "category": "advanced",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.07,
+      "sun_rate": 0.06,
+      "nutrient_rate": 0.055,
+      "micro_rate": 0.045,
+      "growth_hours": [36, 72, 120, 180, 252],
+      "visual_params": {
+        "stem_color": "#3d5e3c",
+        "leaf_shape": "fan",
+        "leaf_color": "#2d6a4f",
+        "flower_color": "#ff6b35",
+        "flower_shape": "compound"
+      },
+      "pest_vulnerabilities": ["aphids", "spider_mites"]
+    },
+    {
+      "id": "rose",
+      "name": "Rose",
+      "category": "advanced",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.06,
+      "sun_rate": 0.055,
+      "nutrient_rate": 0.06,
+      "micro_rate": 0.05,
+      "growth_hours": [28, 56, 96, 144, 200],
+      "visual_params": {
+        "stem_color": "#2d5a27",
+        "leaf_shape": "compound",
+        "leaf_color": "#1b5e20",
+        "flower_color": "#e63946",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["aphids", "fungus_gnats", "spider_mites"]
+    },
+    {
+      "id": "lettuce",
+      "name": "Lettuce",
+      "category": "vegetable",
+      "unlock_achievement_id": null,
+      "water_rate": 0.055,
+      "sun_rate": 0.025,
+      "nutrient_rate": 0.03,
+      "micro_rate": 0.015,
+      "growth_hours": [8, 16, 30, 46, 60],
+      "visual_params": {
+        "stem_color": "#7aa85c",
+        "leaf_shape": "round",
+        "leaf_color": "#8bc34a",
+        "flower_color": null,
+        "flower_shape": null
+      },
+      "pest_vulnerabilities": ["slugs", "aphids"]
+    },
+    {
+      "id": "radish",
+      "name": "Radish",
+      "category": "vegetable",
+      "unlock_achievement_id": null,
+      "water_rate": 0.045,
+      "sun_rate": 0.03,
+      "nutrient_rate": 0.025,
+      "micro_rate": 0.015,
+      "growth_hours": [6, 12, 24, 36, 48],
+      "visual_params": {
+        "stem_color": "#c04a5a",
+        "leaf_shape": "oval",
+        "leaf_color": "#5a9e3f",
+        "flower_color": "#f5f0fa",
+        "flower_shape": "star"
+      },
+      "pest_vulnerabilities": ["leaf_miners", "slugs"]
+    },
+    {
+      "id": "cherry_tomato",
+      "name": "Cherry Tomato",
+      "category": "vegetable",
+      "unlock_achievement_id": null,
+      "water_rate": 0.06,
+      "sun_rate": 0.05,
+      "nutrient_rate": 0.04,
+      "micro_rate": 0.02,
+      "growth_hours": [10, 22, 40, 60, 84],
+      "visual_params": {
+        "stem_color": "#4f7a3a",
+        "leaf_shape": "compound",
+        "leaf_color": "#3f7f34",
+        "flower_color": "#e63b2e",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["whiteflies", "caterpillars", "aphids"]
+    },
+    {
+      "id": "carrot",
+      "name": "Carrot",
+      "category": "vegetable",
+      "unlock_achievement_id": "grow_first_mature",
+      "water_rate": 0.04,
+      "sun_rate": 0.035,
+      "nutrient_rate": 0.03,
+      "micro_rate": 0.02,
+      "growth_hours": [12, 26, 44, 66, 90],
+      "visual_params": {
+        "stem_color": "#e07a2e",
+        "leaf_shape": "compound",
+        "leaf_color": "#4c8f3c",
+        "flower_color": "#fdf5e6",
+        "flower_shape": "compound"
+      },
+      "pest_vulnerabilities": ["leaf_miners", "slugs"]
+    },
+    {
+      "id": "zucchini",
+      "name": "Zucchini",
+      "category": "vegetable",
+      "unlock_achievement_id": "grow_first_mature",
+      "water_rate": 0.065,
+      "sun_rate": 0.05,
+      "nutrient_rate": 0.045,
+      "micro_rate": 0.025,
+      "growth_hours": [10, 24, 44, 68, 92],
+      "visual_params": {
+        "stem_color": "#5a8a3a",
+        "leaf_shape": "fan",
+        "leaf_color": "#2f6d33",
+        "flower_color": "#f4c430",
+        "flower_shape": "star"
+      },
+      "pest_vulnerabilities": ["slugs", "whiteflies"]
+    },
+    {
+      "id": "bell_pepper",
+      "name": "Bell Pepper",
+      "category": "vegetable",
+      "unlock_achievement_id": "grow_first_mature",
+      "water_rate": 0.05,
+      "sun_rate": 0.055,
+      "nutrient_rate": 0.04,
+      "micro_rate": 0.03,
+      "growth_hours": [14, 30, 52, 78, 108],
+      "visual_params": {
+        "stem_color": "#3f6f34",
+        "leaf_shape": "oval",
+        "leaf_color": "#2e7d32",
+        "flower_color": "#e0342a",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["aphids", "whiteflies"]
+    },
+    {
+      "id": "pumpkin",
+      "name": "Pumpkin",
+      "category": "vegetable",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.07,
+      "sun_rate": 0.055,
+      "nutrient_rate": 0.06,
+      "micro_rate": 0.035,
+      "growth_hours": [20, 44, 76, 116, 160],
+      "visual_params": {
+        "stem_color": "#6b8e3a",
+        "leaf_shape": "fan",
+        "leaf_color": "#3a6b2f",
+        "flower_color": "#e8851c",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["slugs", "caterpillars"]
+    },
+    {
+      "id": "chili_pepper",
+      "name": "Chili Pepper",
+      "category": "vegetable",
+      "unlock_achievement_id": "pest_patrol",
+      "water_rate": 0.045,
+      "sun_rate": 0.06,
+      "nutrient_rate": 0.035,
+      "micro_rate": 0.03,
+      "growth_hours": [14, 30, 54, 80, 110],
+      "visual_params": {
+        "stem_color": "#4a6b2f",
+        "leaf_shape": "pointed",
+        "leaf_color": "#356e2b",
+        "flower_color": "#d1201a",
+        "flower_shape": "pointed"
+      },
+      "pest_vulnerabilities": ["aphids", "whiteflies"]
+    },
+    {
+      "id": "strawberry",
+      "name": "Strawberry",
+      "category": "fruit",
+      "unlock_achievement_id": "grow_first_mature",
+      "water_rate": 0.055,
+      "sun_rate": 0.045,
+      "nutrient_rate": 0.035,
+      "micro_rate": 0.025,
+      "growth_hours": [12, 26, 46, 70, 96],
+      "visual_params": {
+        "stem_color": "#5a7a3a",
+        "leaf_shape": "compound",
+        "leaf_color": "#2f7d32",
+        "flower_color": "#e8253a",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["slugs", "caterpillars"]
+    },
+    {
+      "id": "blueberry",
+      "name": "Blueberry Bush",
+      "category": "fruit",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.05,
+      "sun_rate": 0.04,
+      "nutrient_rate": 0.045,
+      "micro_rate": 0.04,
+      "growth_hours": [28, 56, 92, 136, 188],
+      "visual_params": {
+        "stem_color": "#5c4a3a",
+        "leaf_shape": "oval",
+        "leaf_color": "#3b6e4f",
+        "flower_color": "#4f6ecf",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["caterpillars", "fungus_gnats"]
+    },
+    {
+      "id": "watermelon",
+      "name": "Watermelon",
+      "category": "fruit",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.075,
+      "sun_rate": 0.06,
+      "nutrient_rate": 0.05,
+      "micro_rate": 0.03,
+      "growth_hours": [18, 40, 70, 106, 148],
+      "visual_params": {
+        "stem_color": "#4f7a3a",
+        "leaf_shape": "split",
+        "leaf_color": "#357a38",
+        "flower_color": "#f76c7f",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["slugs", "whiteflies"]
+    },
+    {
+      "id": "grape_vine",
+      "name": "Grape Vine",
+      "category": "fruit",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.045,
+      "sun_rate": 0.055,
+      "nutrient_rate": 0.04,
+      "micro_rate": 0.035,
+      "growth_hours": [32, 64, 108, 160, 220],
+      "visual_params": {
+        "stem_color": "#6b4a3a",
+        "leaf_shape": "heart",
+        "leaf_color": "#3f7d33",
+        "flower_color": "#7b4fa8",
+        "flower_shape": "compound"
+      },
+      "pest_vulnerabilities": ["caterpillars", "leaf_miners"]
+    },
+    {
+      "id": "dwarf_lemon",
+      "name": "Dwarf Lemon Tree",
+      "category": "fruit",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.055,
+      "sun_rate": 0.065,
+      "nutrient_rate": 0.05,
+      "micro_rate": 0.045,
+      "growth_hours": [40, 80, 132, 196, 272],
+      "visual_params": {
+        "stem_color": "#5c4433",
+        "leaf_shape": "oval",
+        "leaf_color": "#2d6a30",
+        "flower_color": "#f2d43d",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["spider_mites", "whiteflies"]
+    },
+    {
+      "id": "apple_tree",
+      "name": "Apple Tree",
+      "category": "fruit",
+      "unlock_achievement_id": "grow_first_flower",
+      "water_rate": 0.06,
+      "sun_rate": 0.055,
+      "nutrient_rate": 0.055,
+      "micro_rate": 0.045,
+      "growth_hours": [48, 96, 160, 232, 320],
+      "visual_params": {
+        "stem_color": "#5c4033",
+        "leaf_shape": "round",
+        "leaf_color": "#33691e",
+        "flower_color": "#d5382e",
+        "flower_shape": "round"
+      },
+      "pest_vulnerabilities": ["caterpillars", "leaf_miners", "aphids"]
+    }
+  ],
+  "pest_types": [
+    {
+      "id": "aphids",
+      "name": "Aphids",
+      "base_spawn_rate": 0.015,
+      "severity_growth_rate": 0.008
+    },
+    {
+      "id": "fungus_gnats",
+      "name": "Fungus Gnats",
+      "base_spawn_rate": 0.01,
+      "severity_growth_rate": 0.006
+    },
+    {
+      "id": "spider_mites",
+      "name": "Spider Mites",
+      "base_spawn_rate": 0.008,
+      "severity_growth_rate": 0.012
+    },
+    {
+      "id": "caterpillars",
+      "name": "Caterpillars",
+      "base_spawn_rate": 0.012,
+      "severity_growth_rate": 0.010
+    },
+    {
+      "id": "slugs",
+      "name": "Slugs",
+      "base_spawn_rate": 0.009,
+      "severity_growth_rate": 0.009
+    },
+    {
+      "id": "whiteflies",
+      "name": "Whiteflies",
+      "base_spawn_rate": 0.014,
+      "severity_growth_rate": 0.006
+    },
+    {
+      "id": "leaf_miners",
+      "name": "Leaf Miners",
+      "base_spawn_rate": 0.006,
+      "severity_growth_rate": 0.011
+    }
+  ],
+  "achievements": [
+    {
+      "id": "grow_first_mature",
+      "name": "Green Thumb",
+      "description": "Grow your first plant to maturity",
+      "type": "grow_to_stage",
+      "params": { "stage": 3 }
+    },
+    {
+      "id": "grow_first_flower",
+      "name": "First Bloom",
+      "description": "Grow your first plant to flowering stage",
+      "type": "grow_to_stage",
+      "params": { "stage": 4 }
+    },
+    {
+      "id": "keep_alive_week",
+      "name": "Dedicated Caretaker",
+      "description": "Keep a plant alive for 7 real days",
+      "type": "keep_alive_days",
+      "params": { "days": 7 }
+    },
+    {
+      "id": "snake_plant_master",
+      "name": "Snake Plant Master",
+      "description": "Keep a Snake Plant alive for 500 game hours",
+      "type": "keep_alive_game_hours",
+      "params": { "species_id": "snake_plant", "hours": 500 }
+    },
+    {
+      "id": "spider_plant_master",
+      "name": "Spider Plant Master",
+      "description": "Keep a Spider Plant alive for 500 game hours",
+      "type": "keep_alive_game_hours",
+      "params": { "species_id": "spider_plant", "hours": 500 }
+    },
+    {
+      "id": "pothos_master",
+      "name": "Pothos Master",
+      "description": "Keep a Golden Pothos alive for 500 game hours",
+      "type": "keep_alive_game_hours",
+      "params": { "species_id": "pothos", "hours": 500 }
+    },
+    {
+      "id": "pest_patrol",
+      "name": "Pest Patrol",
+      "description": "Treat 10 pest infestations",
+      "type": "treat_pests",
+      "params": { "count": 10 }
+    }
+  ]
+}

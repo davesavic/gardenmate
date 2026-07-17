@@ -1,0 +1,15 @@
+version: '3'
+
+tasks:
+  build:
+    desc: Build Linux binary
+    cmds:
+      - GOOS=linux GOARCH=amd64 go build -o bin/gardenmate-linux-amd64 ./...
+    vars:
+      CGO_ENABLED: '1'
+
+  package:
+    desc: Package Linux AppImage
+    deps: [build]
+    cmds:
+      - echo "AppImage packaging placeholder"

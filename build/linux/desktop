@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=My Product
+Comment=A _wails_check application
+# The Exec line includes %u to pass the URL to the application
+Exec=/usr/local/bin/_wails_check %u
+Terminal=false
+Type=Application
+Icon=_wails_check
+Categories=Utility;
+StartupWMClass=_wails_check
+
+ 
