@@ -180,7 +180,7 @@ func (sim *SimulationService) applyTick() {
 		}
 
 		if min4(plant.Water, plant.Sun, plant.Nutrients, plant.Micronutrients) > growthThreshold {
-			if plant.Stage < 4 {
+			if plant.Stage < sp.MaxStage() {
 				totalGrowthHours := sp.GrowthHours[plant.Stage]
 				if totalGrowthHours > 0 {
 					plant.GrowthProgress += gameHoursElapsed / totalGrowthHours
@@ -196,7 +196,7 @@ func (sim *SimulationService) applyTick() {
 					}
 				}
 			} else {
-				totalGrowthHours := sp.GrowthHours[4]
+				totalGrowthHours := sp.GrowthHours[sp.MaxStage()]
 				if totalGrowthHours > 0 {
 					plant.GrowthProgress += gameHoursElapsed / totalGrowthHours
 					if plant.GrowthProgress >= 1.0 {
@@ -324,7 +324,7 @@ func (sim *SimulationService) runCatchUp() {
 			plant.Health = clamp01(min4(plant.Water, plant.Sun, plant.Nutrients, plant.Micronutrients) * (1 - pestPenalty))
 
 			if min4(plant.Water, plant.Sun, plant.Nutrients, plant.Micronutrients) > growthThreshold {
-				if plant.Stage < 4 {
+				if plant.Stage < sp.MaxStage() {
 					totalGrowthHours := sp.GrowthHours[plant.Stage]
 					if totalGrowthHours > 0 {
 						plant.GrowthProgress += gameHoursStep / totalGrowthHours
@@ -337,7 +337,7 @@ func (sim *SimulationService) runCatchUp() {
 						}
 					}
 				} else {
-					totalGrowthHours := sp.GrowthHours[4]
+					totalGrowthHours := sp.GrowthHours[sp.MaxStage()]
 					if totalGrowthHours > 0 {
 						plant.GrowthProgress += gameHoursStep / totalGrowthHours
 						if plant.GrowthProgress >= 1.0 {

@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "species": [
     {
       "id": "snake_plant",
@@ -276,7 +276,7 @@
       "sun_rate": 0.05,
       "nutrient_rate": 0.04,
       "micro_rate": 0.02,
-      "growth_hours": [10, 22, 40, 60, 84],
+      "growth_hours": [10, 22, 40, 60, 84, 110],
       "visual_params": {
         "stem_color": "#4f7a3a",
         "leaf_shape": "compound",
@@ -314,7 +314,7 @@
       "sun_rate": 0.05,
       "nutrient_rate": 0.045,
       "micro_rate": 0.025,
-      "growth_hours": [10, 24, 44, 68, 92],
+      "growth_hours": [10, 24, 44, 68, 92, 120],
       "visual_params": {
         "stem_color": "#5a8a3a",
         "leaf_shape": "fan",
@@ -333,7 +333,7 @@
       "sun_rate": 0.055,
       "nutrient_rate": 0.04,
       "micro_rate": 0.03,
-      "growth_hours": [14, 30, 52, 78, 108],
+      "growth_hours": [14, 30, 52, 78, 108, 140],
       "visual_params": {
         "stem_color": "#3f6f34",
         "leaf_shape": "oval",
@@ -352,7 +352,7 @@
       "sun_rate": 0.055,
       "nutrient_rate": 0.06,
       "micro_rate": 0.035,
-      "growth_hours": [20, 44, 76, 116, 160],
+      "growth_hours": [20, 44, 76, 116, 160, 210],
       "visual_params": {
         "stem_color": "#6b8e3a",
         "leaf_shape": "fan",
@@ -371,7 +371,7 @@
       "sun_rate": 0.06,
       "nutrient_rate": 0.035,
       "micro_rate": 0.03,
-      "growth_hours": [14, 30, 54, 80, 110],
+      "growth_hours": [14, 30, 54, 80, 110, 144],
       "visual_params": {
         "stem_color": "#4a6b2f",
         "leaf_shape": "pointed",
@@ -390,7 +390,7 @@
       "sun_rate": 0.045,
       "nutrient_rate": 0.035,
       "micro_rate": 0.025,
-      "growth_hours": [12, 26, 46, 70, 96],
+      "growth_hours": [12, 26, 46, 70, 96, 124],
       "visual_params": {
         "stem_color": "#5a7a3a",
         "leaf_shape": "compound",
@@ -409,7 +409,7 @@
       "sun_rate": 0.04,
       "nutrient_rate": 0.045,
       "micro_rate": 0.04,
-      "growth_hours": [28, 56, 92, 136, 188],
+      "growth_hours": [28, 56, 92, 136, 188, 244],
       "visual_params": {
         "stem_color": "#5c4a3a",
         "leaf_shape": "oval",
@@ -428,7 +428,7 @@
       "sun_rate": 0.06,
       "nutrient_rate": 0.05,
       "micro_rate": 0.03,
-      "growth_hours": [18, 40, 70, 106, 148],
+      "growth_hours": [18, 40, 70, 106, 148, 196],
       "visual_params": {
         "stem_color": "#4f7a3a",
         "leaf_shape": "split",
@@ -447,7 +447,7 @@
       "sun_rate": 0.055,
       "nutrient_rate": 0.04,
       "micro_rate": 0.035,
-      "growth_hours": [32, 64, 108, 160, 220],
+      "growth_hours": [32, 64, 108, 160, 220, 286],
       "visual_params": {
         "stem_color": "#6b4a3a",
         "leaf_shape": "heart",
@@ -466,7 +466,7 @@
       "sun_rate": 0.065,
       "nutrient_rate": 0.05,
       "micro_rate": 0.045,
-      "growth_hours": [40, 80, 132, 196, 272],
+      "growth_hours": [40, 80, 132, 196, 272, 356],
       "visual_params": {
         "stem_color": "#5c4433",
         "leaf_shape": "oval",
@@ -485,7 +485,7 @@
       "sun_rate": 0.055,
       "nutrient_rate": 0.055,
       "micro_rate": 0.045,
-      "growth_hours": [48, 96, 160, 232, 320],
+      "growth_hours": [48, 96, 160, 232, 320, 416],
       "visual_params": {
         "stem_color": "#5c4033",
         "leaf_shape": "round",

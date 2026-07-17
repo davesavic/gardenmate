@@ -62,7 +62,60 @@ func NewStore(dbPath string) (*StoreService, error) {
 		}
 	}
 
+	if err := migrateSpeciesCategoryConstraint(db); err != nil {
+		db.Close()
+		return nil, fmt.Errorf("migrate species category constraint: %w", err)
+	}
+
 	return &StoreService{db: db}, nil
+}
+
+// migrateSpeciesCategoryConstraint rebuilds the species table on databases
+// created before the CHECK constraint allowed 'vegetable' and 'fruit'
+// categories. Without this, SeedSpecies fails on manifest version bumps.
+func migrateSpeciesCategoryConstraint(db *sql.DB) error {
+	var tableSQL string
+	err := db.QueryRow(
+		`SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'species'`,
+	).Scan(&tableSQL)
+	if err != nil {
+		return fmt.Errorf("read species table sql: %w", err)
+	}
+	if strings.Contains(tableSQL, "'vegetable'") {
+		return nil
+	}
+
+	tx, err := db.Begin()
+	if err != nil {
+		return fmt.Errorf("begin tx: %w", err)
+	}
+	defer tx.Rollback()
+
+	stmts := []string{
+		`CREATE TABLE species_new (
+			id                   TEXT PRIMARY KEY,
+			name                 TEXT NOT NULL,
+			category             TEXT NOT NULL CHECK (category IN ('beginner', 'intermediate', 'advanced', 'vegetable', 'fruit')),
+			water_rate           REAL NOT NULL DEFAULT 0.0,
+			sun_rate             REAL NOT NULL DEFAULT 0.0,
+			nutrient_rate        REAL NOT NULL DEFAULT 0.0,
+			micro_rate           REAL NOT NULL DEFAULT 0.0,
+			growth_hours         TEXT NOT NULL DEFAULT '[]',
+			visual_params        TEXT NOT NULL DEFAULT '{}',
+			unlock_achievement_id TEXT,
+			is_active            INTEGER NOT NULL DEFAULT 1,
+			FOREIGN KEY (unlock_achievement_id) REFERENCES achievements(id)
+		)`,
+		`INSERT INTO species_new SELECT * FROM species`,
+		`DROP TABLE species`,
+		`ALTER TABLE species_new RENAME TO species`,
+	}
+	for _, stmt := range stmts {
+		if _, err := tx.Exec(stmt); err != nil {
+			return fmt.Errorf("rebuild species table: %w", err)
+		}
+	}
+	return tx.Commit()
 }
 
 func parseTime(s string) (time.Time, error) {

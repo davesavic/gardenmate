@@ -147,8 +147,8 @@ func (s *Species) Validate() error {
 	if s.Name == "" {
 		return fmt.Errorf("species name is required")
 	}
-	if len(s.GrowthHours) != 5 {
-		return fmt.Errorf("growth_hours must have exactly 5 entries, got %d", len(s.GrowthHours))
+	if len(s.GrowthHours) != 5 && len(s.GrowthHours) != 6 {
+		return fmt.Errorf("growth_hours must have 5 or 6 entries, got %d", len(s.GrowthHours))
 	}
 	for i, h := range s.GrowthHours {
 		if h <= 0 {
@@ -174,6 +174,13 @@ func (s *Species) Validate() error {
 		return fmt.Errorf("rates must not be Inf")
 	}
 	return nil
+}
+
+// MaxStage returns the final growth stage for this species.
+// Species with 5 growth_hours entries top out at stage 4 (flowering);
+// fruit-bearing species with 6 entries reach stage 5 (fruiting).
+func (s *Species) MaxStage() int {
+	return len(s.GrowthHours) - 1
 }
 
 // SpeciesCount returns the total number of species

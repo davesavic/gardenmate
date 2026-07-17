@@ -382,6 +382,67 @@ func TestSimulationStageGrowth(t *testing.T) {
 	}
 }
 
+func TestSimulationFruitingStage(t *testing.T) {
+	clock := &mockClock{now: time.Now()}
+	ticker := newMockTicker()
+	emitter := &NoopEventEmitter{}
+	notifier := NewNotifyService()
+	achievements := &AchievementService{}
+
+	plant := &PlantInstance{
+		ID:             1,
+		SpeciesID:      "test_fruit",
+		Name:           "Test",
+		Water:          1.0,
+		Sun:            1.0,
+		Nutrients:      1.0,
+		Micronutrients: 1.0,
+		Health:         1.0,
+		GrowthProgress: 0.99,
+		Stage:          4,
+		LastTickAt:     clock.Now(),
+		Pests:          []PestInstance{},
+	}
+
+	garden := &Garden{
+		Plants:               []*PlantInstance{plant},
+		UnlockedAchievements: make(map[string]time.Time),
+		Settings: map[string]string{
+			"tick_interval_seconds":  "30",
+			"minutes_per_game_hour":  "5",
+			"catchup_max_game_hours": "8",
+		},
+	}
+
+	species := map[string]*Species{
+		"test_fruit": {
+			ID:                  "test_fruit",
+			WaterRate:           0.02,
+			SunRate:             0.01,
+			NutrientRate:        0.01,
+			MicroRate:           0.005,
+			GrowthHours:         []float64{5, 10, 15, 20, 5, 5},
+			PestVulnerabilities: []string{},
+		},
+	}
+
+	sim := NewSimulation(garden, species, clock, ticker, nil, notifier, achievements, emitter)
+
+	sim.applyTick()
+	if plant.Stage != 5 {
+		t.Errorf("6-stage species should advance from flowering to fruiting, got stage %d", plant.Stage)
+	}
+
+	plant.GrowthProgress = 0.99
+	sim.applyTick()
+	if plant.Stage != 5 {
+		t.Errorf("stage should cap at 5, got %d", plant.Stage)
+	}
+	if plant.GrowthProgress >= 0.99 {
+		t.Error("growth_progress should cycle at max stage")
+	}
+}
+
 func TestSimulationRunContext(t *testing.T) {
 	clock := &mockClock{now: time.Now()}
 	ticker := newMockTicker()

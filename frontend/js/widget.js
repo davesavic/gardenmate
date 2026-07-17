@@ -134,8 +134,23 @@ class WidgetController {
     // Hide on outside clicks
     document.addEventListener('click', (e) => {
       if (!this.canvas.contains(e.target)) {
+        const hadTooltip = this.tooltip.classList.contains('show');
+        const hadMenu = this.contextMenu.classList.contains('show');
         this._hideTooltip();
         this._hideContextMenu();
+
+        if (hadTooltip || hadMenu) {
+          const canvasRect = this.canvas.getBoundingClientRect();
+          if (e.clientX >= canvasRect.left && e.clientX <= canvasRect.right &&
+              e.clientY >= canvasRect.top && e.clientY <= canvasRect.bottom) {
+            const elementUnder = document.elementFromPoint(e.clientX, e.clientY);
+            if (elementUnder === this.canvas) {
+              this.canvas.dispatchEvent(new MouseEvent('click', {
+                clientX: e.clientX, clientY: e.clientY, bubbles: true
+              }));
+            }
+          }
+        }
       }
     });
 
@@ -175,8 +190,6 @@ class WidgetController {
     const health = Math.round((plant.health || 0) * 100);
 
     this.tooltip.innerHTML = '';
-    this.tooltip.style.left = `${px + 20}px`;
-    this.tooltip.style.top = `${py - 60}px`;
 
     const nameEl = document.createElement('div');
     nameEl.className = 'tooltip-name';
@@ -217,7 +230,53 @@ class WidgetController {
       this.tooltip.appendChild(fertBtn);
     }
 
+    this._positionRelative(this.tooltip, px, py);
     this.tooltip.classList.add('show');
+  }
+
+  _positionRelative(el, targetX, targetY, offsetX = 20, offsetY = -60) {
+    const canvasRect = this.canvas.getBoundingClientRect();
+    const maxX = canvasRect.width || this.canvas.offsetWidth || 0;
+    const maxY = canvasRect.height || this.canvas.offsetHeight || 0;
+
+    const wasShown = el.classList.contains('show');
+    if (!wasShown) {
+      el.style.visibility = 'hidden';
+      el.classList.add('show');
+    }
+
+    let elW = el.offsetWidth || el.getBoundingClientRect().width;
+    let elH = el.offsetHeight || el.getBoundingClientRect().height;
+
+    if (!wasShown) {
+      el.classList.remove('show');
+      el.style.visibility = '';
+    }
+
+    if (elW === 0) {
+      elW = parseInt(el.style.width) || parseInt(el.style.minWidth) || 192;
+    }
+    if (elH === 0) {
+      elH = parseInt(el.style.height) || parseInt(el.style.minHeight) || 100;
+    }
+
+    if (targetX + offsetX + elW > maxX) {
+      const flippedLeft = targetX - offsetX - elW;
+      el.style.left = `${Math.max(0, flippedLeft)}px`;
+    } else if (targetX + offsetX < 0) {
+      el.style.left = '0px';
+    } else {
+      el.style.left = `${targetX + offsetX}px`;
+    }
+
+    if (targetY + offsetY + elH > maxY) {
+      const flippedTop = targetY - offsetY - elH;
+      el.style.top = `${Math.max(0, flippedTop)}px`;
+    } else if (targetY + offsetY < 0) {
+      el.style.top = '0px';
+    } else {
+      el.style.top = `${targetY + offsetY}px`;
+    }
   }
 
   _hideTooltip() {
@@ -231,8 +290,8 @@ class WidgetController {
   _showEmptyContextMenu(e) {
     const rect = this.canvas.getBoundingClientRect();
     this.contextMenu.innerHTML = '';
-    this.contextMenu.style.left = `${e.clientX - rect.left}px`;
-    this.contextMenu.style.top = `${e.clientY - rect.top}px`;
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
 
     const select = document.createElement('select');
     select.innerHTML = '<option value="">Add plant...</option>';
@@ -255,6 +314,7 @@ class WidgetController {
     });
     this.contextMenu.appendChild(switchBtn);
 
+    this._positionRelative(this.contextMenu, cx, cy, 5, 5);
     this.contextMenu.classList.add('show');
   }
 
@@ -285,8 +345,8 @@ class WidgetController {
   _showPlantContextMenu(plant, e) {
     const rect = this.canvas.getBoundingClientRect();
     this.contextMenu.innerHTML = '';
-    this.contextMenu.style.left = `${e.clientX - rect.left}px`;
-    this.contextMenu.style.top = `${e.clientY - rect.top}px`;
+    const cx = e.clientX - rect.left;
+    const cy = e.clientY - rect.top;
 
     const renameBtn = document.createElement('button');
     renameBtn.textContent = 'Rename';
@@ -310,6 +370,7 @@ class WidgetController {
     });
     this.contextMenu.appendChild(removeBtn);
 
+    this._positionRelative(this.contextMenu, cx, cy, 5, 5);
     this.contextMenu.classList.add('show');
   }
 

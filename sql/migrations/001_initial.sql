@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS achievements (
 CREATE TABLE IF NOT EXISTS species (
     id                   TEXT PRIMARY KEY,
     name                 TEXT NOT NULL,
-    category             TEXT NOT NULL CHECK (category IN ('beginner', 'intermediate', 'advanced')),
+    category             TEXT NOT NULL CHECK (category IN ('beginner', 'intermediate', 'advanced', 'vegetable', 'fruit')),
     water_rate           REAL NOT NULL DEFAULT 0.0,
     sun_rate             REAL NOT NULL DEFAULT 0.0,
     nutrient_rate        REAL NOT NULL DEFAULT 0.0,

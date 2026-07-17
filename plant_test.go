@@ -125,6 +125,27 @@ func TestSpeciesValidate(t *testing.T) {
 	if err := s4.Validate(); err == nil {
 		t.Error("expected error for empty name")
 	}
+
+	s5 := Species{
+		ID:          "test",
+		Name:        "Test",
+		GrowthHours: []float64{1, 2, 3, 4, 5, 6},
+	}
+	if err := s5.Validate(); err != nil {
+		t.Errorf("expected 6-element growth_hours to be valid, got %v", err)
+	}
+	if s5.MaxStage() != 5 {
+		t.Errorf("expected MaxStage 5 for 6-element growth_hours, got %d", s5.MaxStage())
+	}
+
+	s6 := Species{
+		ID:          "test",
+		Name:        "Test",
+		GrowthHours: []float64{1, 2, 3, 4, 5, 6, 7},
+	}
+	if err := s6.Validate(); err == nil {
+		t.Error("expected error for 7-element growth_hours")
+	}
 }
 
 func TestSpeciesManifestPests(t *testing.T) {

@@ -306,7 +306,7 @@ class UIController {
     this.plantNameInput.value = this._esc(plant.name);
     this.speciesNameEl.textContent = this._prettyName(plant.species_id);
 
-    const stages = ['Seed', 'Sprout', 'Growing', 'Mature', 'Flowering'];
+    const stages = ['Seed', 'Sprout', 'Growing', 'Mature', 'Flowering', 'Fruiting'];
     this.stageNameEl.textContent = stages[plant.stage] || `Stage ${plant.stage}`;
 
     // Stat bars (plant field -> DOM key)

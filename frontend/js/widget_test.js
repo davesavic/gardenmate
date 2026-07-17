@@ -60,6 +60,51 @@ class WidgetController {
     this.tooltip.classList.remove('show');
   }
 
+  _positionRelative(el, targetX, targetY, offsetX = 20, offsetY = -60) {
+    const canvasRect = this.canvas.getBoundingClientRect();
+    const maxX = canvasRect.width || this.canvas.offsetWidth || 0;
+    const maxY = canvasRect.height || this.canvas.offsetHeight || 0;
+
+    const wasShown = el.classList.contains('show');
+    if (!wasShown) {
+      el.style.visibility = 'hidden';
+      el.classList.add('show');
+    }
+
+    let elW = el.offsetWidth || el.getBoundingClientRect().width;
+    let elH = el.offsetHeight || el.getBoundingClientRect().height;
+
+    if (!wasShown) {
+      el.classList.remove('show');
+      el.style.visibility = '';
+    }
+
+    if (elW === 0) {
+      elW = parseInt(el.style.width) || parseInt(el.style.minWidth) || 192;
+    }
+    if (elH === 0) {
+      elH = parseInt(el.style.height) || parseInt(el.style.minHeight) || 100;
+    }
+
+    if (targetX + offsetX + elW > maxX) {
+      const flippedLeft = targetX - offsetX - elW;
+      el.style.left = `${Math.max(0, flippedLeft)}px`;
+    } else if (targetX + offsetX < 0) {
+      el.style.left = '0px';
+    } else {
+      el.style.left = `${targetX + offsetX}px`;
+    }
+
+    if (targetY + offsetY + elH > maxY) {
+      const flippedTop = targetY - offsetY - elH;
+      el.style.top = `${Math.max(0, flippedTop)}px`;
+    } else if (targetY + offsetY < 0) {
+      el.style.top = '0px';
+    } else {
+      el.style.top = `${targetY + offsetY}px`;
+    }
+  }
+
   _hideContextMenu() {
     this.contextMenu.classList.remove('show');
   }
@@ -160,5 +205,71 @@ describe('WidgetController', () => {
     widget.contextMenu.classList.add('show');
     widget._hideContextMenu();
     expect(widget.contextMenu.classList.contains('show')).toBe(false);
+  });
+
+  describe('_positionRelative', () => {
+    beforeEach(() => {
+      widget.canvas.getBoundingClientRect = () => ({ left: 0, top: 0, width: 300, height: 400 });
+    });
+
+    it('positions element right of target when there is room', () => {
+      const el = document.createElement('div');
+      el.style.width = '50px';
+      el.style.height = '50px';
+      document.body.appendChild(el);
+
+      widget._positionRelative(el, 50, 100, 20, -60);
+      expect(el.style.left).toBe('70px');
+      expect(el.style.top).toBe('40px');
+      el.remove();
+    });
+
+    it('flips left when element overflows right edge', () => {
+      const el = document.createElement('div');
+      el.style.width = '50px';
+      el.style.height = '50px';
+      document.body.appendChild(el);
+
+      widget._positionRelative(el, 280, 100, 20, -60);
+      expect(el.style.left).toBe('210px');
+      el.remove();
+    });
+
+    it('flips above when element overflows bottom edge', () => {
+      const el = document.createElement('div');
+      el.style.width = '50px';
+      el.style.height = '30px';
+      document.body.appendChild(el);
+
+      widget._positionRelative(el, 50, 390, 5, 5);
+      expect(el.style.top).toBe('355px');
+      el.remove();
+    });
+
+    it('clamps to edge when both sides overflow', () => {
+      const el = document.createElement('div');
+      el.style.width = '50px';
+      el.style.height = '50px';
+      document.body.appendChild(el);
+
+      widget._positionRelative(el, 290, 390, 20, -60);
+      // desiredLeft = 310, overflows right; flipped: 290-20-50=220, fits
+      expect(el.style.left).toBe('220px');
+      // desiredTop = 330, fits
+      expect(el.style.top).toBe('330px');
+      el.remove();
+    });
+
+    it('respects custom offsets', () => {
+      const el = document.createElement('div');
+      el.style.width = '50px';
+      el.style.height = '50px';
+      document.body.appendChild(el);
+
+      widget._positionRelative(el, 50, 100, 8, 12);
+      expect(el.style.left).toBe('58px');
+      expect(el.style.top).toBe('112px');
+      el.remove();
+    });
   });
 });
